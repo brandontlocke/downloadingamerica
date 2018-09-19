@@ -1,6 +1,5 @@
 
 #!/usr/bin/env python
-
 import json, re, urllib.request
 
 #request the url to retrieve
@@ -19,5 +18,4 @@ with urllib.request.urlopen(chronam+'&rows='+str(rows)+'&format=json') as json_f
         filename = p['date']+'_'+p['title']+'_'+"pg"+p['page']
         file = open(re.sub('[^a-zA-Z0-9_]', '', filename)+".txt", "w")
         file.write(p['ocr_eng'])
-
-file.close()
+json_file.close()
