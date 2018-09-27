@@ -21,7 +21,7 @@ with open('metadata.csv', 'w') as metadata:
     metawriter = csv.writer(metadata, delimiter=',')
     metawriter.writerow(['file', 'title', 'date', 'edition', 'sequence', 'city', 'county', 'state', 'page_url'])
     for p in data['items']:
-        filename = re.sub('[^a-zA-Z0-9_]', '', p['date']+'_'+p['title']+'_'+ p['edition'] + '_' + p['sequence'])
+        filename = re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(p['edition']) + '_' + str(p['sequence']))
         file = open(filename + ".txt", "w")
         file.write(p['ocr_eng'])
         metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
@@ -33,5 +33,5 @@ with open('readme.txt', 'w') as readme:
     search = chronam.split("&")
     state = search[0].split("?")
     readme.write("===Search terms=== " + '\n' + state[1] + '\n' + search[1] + '\n' + search[2] + '\n' + search[3] + search[4] + '\n' + search[5] + '\n' + search[6] + '\n' + search[7] + '\n' + search[8] + '\n' + search[9] + ' & ' + search[10] + '\n\n')
-    readme.write("===Compiled with===\nu'U+1F4F0DownloadingAmerica\nhttps://github.com/brandontlocke/downloadingamerica ")
+    readme.write("===Compiled with===\nDownloadingAmerica\nhttps://github.com/brandontlocke/downloadingamerica ")
 readme.close()
