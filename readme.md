@@ -18,10 +18,12 @@ Run the script (type `python downloadingamerica.py` )
 
 It will ask for a URL. Paste in the regular results URL from any Chronicling America search result page and hit enter.
 
-## Notes
-This is very much in beta and has only been tested with a few different search scenarios. It's possible that extremely large results will break it.
+If you have a lot of results, this may
 
-Some newspapers are missing key metadata (such as page numbers) which may result in files overwriting themselves. Be sure to check your results.
+## Notes
+This is very much in beta and has only been tested with a few different search scenarios. For right now, it only works on smaller queries (under about 3k pages)
+
+Some newspapers are missing key metadata which may result blank metadata or filenaming issues.
 
 ### Next Steps
 I'm open to hearing feedback if there is anything people would like to have changed. At some point I would like to parse the search query to make a nicer looking readme, but that will wait another day.
