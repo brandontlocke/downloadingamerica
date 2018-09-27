@@ -19,12 +19,12 @@ json_file.close()
 #opens a metadata csv, writes a header, then for each item it creates a filename, prints the text, and prints the metadata to the csv
 with open('metadata.csv', 'w') as metadata:
     metawriter = csv.writer(metadata, delimiter=',')
-    metawriter.writerow(['file', 'title', 'date', 'page_num', 'city', 'county', 'state', 'page_url'])
+    metawriter.writerow(['file', 'title', 'date', 'edition', 'sequence', 'city', 'county', 'state', 'page_url'])
     for p in data['items']:
-        filename = re.sub('[^a-zA-Z0-9_]', '', p['date']+'_'+p['title']+'_'+"pg"+p['page'])
+        filename = re.sub('[^a-zA-Z0-9_]', '', p['date']+'_'+p['title']+'_'+ p['edition'] + '_' + p['sequence'])
         file = open(filename + ".txt", "w")
         file.write(p['ocr_eng'])
-        metawriter.writerow([filename, p['title'], p['date'], p['page'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
+        metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
 metadata.close()
 
 #creates a readme with some very simple information about the corpus
@@ -33,5 +33,5 @@ with open('readme.txt', 'w') as readme:
     search = chronam.split("&")
     state = search[0].split("?")
     readme.write("===Search terms=== " + '\n' + state[1] + '\n' + search[1] + '\n' + search[2] + '\n' + search[3] + search[4] + '\n' + search[5] + '\n' + search[6] + '\n' + search[7] + '\n' + search[8] + '\n' + search[9] + ' & ' + search[10] + '\n\n')
-    readme.write("===Compiled with===\n📰📂DownloadingAmerica📂📰\nhttps://github.com/brandontlocke/downloadingamerica ")
+    readme.write("===Compiled with===\nu'U+1F4F0DownloadingAmerica\nhttps://github.com/brandontlocke/downloadingamerica ")
 readme.close()

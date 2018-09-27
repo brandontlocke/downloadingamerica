@@ -5,14 +5,14 @@ A Python script for bulk downloading individual plain text files from the [Libra
 Given a Chronicling America search result, this will download the plain text of each page into its own text file, write some of the metadata to a csv file, and create a readme that explains the search.
 
 ## Dependencies
-To use this, you'll need to have Python 3 installed, and access to some kind of command line interface [I'd recommend Terminal on OS X or GitBash on Windows].
+To use this, you'll need to have Python 3 installed, and access to some kind of command line interface [I'd recommend Terminal on OS X or Anaconda on Windows].
 
 ## Instructions
 Create a folder where you want your text files to live. [Your life will be better if this folder is empty.]
 
 Save the downloadingamerica.py file in that folder.
 
-Using a command line interface, navigate to the folder. [For a folder named 'chronam' on the Desktop, you would type `cd Desktop/chronam`]
+Using a command line interface [Terminal (Mac OS X) or Anaconda Prompt (Windows)], navigate to the folder. [For a folder named 'chronam' on the Desktop, you would type `cd Desktop/chronam`]
 
 Run the script (type `python downloadingamerica.py` )
 
