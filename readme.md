@@ -5,7 +5,7 @@ A Python script for bulk downloading individual plain text files from the [Libra
 Given a Chronicling America search result, this will download the plain text of each page into its own text file, write some of the metadata to a csv file, and create a readme that explains the search.
 
 ## Output
-**YYYYMMDD_title_edition_sequence.txt**: each newspaper page's OCR text will go into a text file with a name following this format—all characters besides letters, numbers, and underscores is stripped from this title.
+**YYYYMMDD_title_edition_sequence.txt**: each newspaper page's OCR text will go into a text file with a name following this format—all characters besides letters, numbers, and underscores are stripped from this title.
 
 **metadata.csv**: filename, title (newspaper title), date, edition, sequence (e.g. 1st image in edition, 2nd, 3rd), city, county, state, page_url (this will bring you to the page's ChronAm interface)
 
