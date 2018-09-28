@@ -33,7 +33,7 @@ I'm going to add more information about how to read and process the JSON to cust
 ## Limitations & Notes
 This is set up to print OCR in English. If you're looking for a different language, replace `ocr_eng` with the language of your choice. If any pages in your results do not have `ocr_eng`, they will be added to `metadata.csv` with "notext" as the filename. It will not create a text file for the page.
 
-Sometimes there is an issue with encoding the ocr_eng text (this seems to be more of an issue on Windows than Mac OS X). I'm trying to sort that one out.
+Sometimes there is an issue with encoding the ocr_eng text (this seems to be more of an issue on Windows than Mac OS X).
 
 The metadata for city, county, and state only print the first value in the record—this could be a problem if there are multiple city/county/states for the page, or if the first value isn't the information you're looking for. In testing, I only came across papers with single values, but that is probably not universal.
 

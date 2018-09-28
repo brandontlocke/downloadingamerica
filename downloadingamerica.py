@@ -25,7 +25,7 @@ while data['endIndex'] < data['totalItems']:
                 filename = re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(p['edition']) + '_' + str(p['sequence'])) + '.txt'
                 file = open(filename, "w")
                 file.write(p['ocr_eng'])
-            metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
+        metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
     pg+=1
 
 #creates a readme with some very simple information about the corpus
