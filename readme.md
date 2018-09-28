@@ -6,7 +6,9 @@ Given a Chronicling America search result, this will download the plain text of 
 
 ## Output
 **YYYYMMDD_title_edition_sequence.txt**: each newspaper page's OCR text will go into a text file with a name following this format—all characters besides letters, numbers, and underscores is stripped from this title.
+
 **metadata.csv**: filename, title (newspaper title), date, edition, sequence (e.g. 1st image in edition, 2nd, 3rd), city, county, state, page_url (this will bring you to the page's ChronAm interface)
+
 **readme.txt**: this is intended to help you keep your data documented—it includes the (local) date and time you did the search, the number of results, URLs for the ChronAm interface & JSON file, a (rough) account of your search input, and a reminder that you used this script to do it
 
 ## Dependencies
@@ -15,11 +17,11 @@ To use this, you'll need to have Python 3 installed, and access to some kind of 
 ## Instructions
 Create a folder where you want your text files to live. [Your life will be easier if this folder is empty.]
 
-Save the downloadingamerica.py file in that folder.
+Save the [downloadingamerica.py](https://github.com/brandontlocke/downloadingamerica/raw/master/downloadingamerica.py) file in that folder [you can right-click and 'save link as' if you'd like].
 
-Using a command line interface [Terminal (Mac OS X) or Anaconda Prompt (Windows)], navigate to the folder. [For a folder named 'chronam' on the Desktop, you would type `cd Desktop/chronam`]
+Using a command line interface [Terminal (Mac OS X) or Anaconda Prompt (Windows)], navigate to the folder. [For a folder named 'chronam' on the Desktop, you would type (without the $) `$ cd Desktop/chronam`]
 
-Run the script [type `python downloadingamerica.py`]
+Run the script [type `$ python downloadingamerica.py`]
 
 It will ask for a URL. Paste in the search results URL from any Chronicling America search page and hit enter. If everything goes ok, you probably won't see changes in the command prompt right away, but you should see your folder filling up with files pretty quickly.
 
