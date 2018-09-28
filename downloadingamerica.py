@@ -6,37 +6,26 @@ import sys, json, re, urllib.request, csv, datetime
 chronam = input("Paste in the URL for the ChronAm search results you want to download: ")
 
 #requests the URL in json with 200 rows and adds the page number
-with urllib.request.urlopen(chronam+'&rows=200&format=json') as json_file:
-    data = json.loads(json_file.read().decode()) #this .read().decode() may not be necessary
+with urllib.request.urlopen(chronam+'&format=json') as json_file:
+    data = json.loads(json_file.read().decode())
 json_file.close()
 
-#opens a metadata csv, writes a header, then for each item it creates a filename, prints the text, and prints the metadata to the csv
-with open('metadata.csv', 'w') as metadata:
-    metawriter = csv.writer(metadata, delimiter=',')
-    metawriter.writerow(['file', 'title', 'date', 'edition', 'sequence', 'city', 'county', 'state', 'page_url'])
-    for p in data['items']:
-        filename = re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(p['edition']) + '_' + str(p['sequence']))
-        file = open(filename + ".txt", "w")
-        file.write(p['ocr_eng'])
-        metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
-metadata.close()
-
-#if there are more than 200 rows, this will loop through the rest
-pg=2
+#this creates a metadata csv, adds a header, grabs 20 items at a time from the API, cycles through each item and writes a row in metadata and creates a text file with the OCR. After it's done all 20, it goes back for the next 20.
+pg=1
 while data['endIndex'] < data['totalItems']:
-    with urllib.request.urlopen(chronam+'&rows=200&format=json&page=' + str(pg)) as json_file:
-        data = json.loads(json_file.read().decode()) #this .read().decode() may not be necessary
-    json_file.close()
     with open('metadata.csv', 'a') as metadata:
         metawriter = csv.writer(metadata, delimiter=',')
+        if pg==1:
+            metawriter.writerow(['file', 'title', 'date', 'edition', 'sequence', 'city', 'county', 'state', 'page_url'])
+        with urllib.request.urlopen(chronam+'&rows=20&format=json&page=' + str(pg)) as json_file:
+            data = json.loads(json_file.read().decode())
+        json_file.close()
         for p in data['items']:
-            filename = re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(p['edition']) + '_' + str(p['sequence']))
-            file = open(filename + ".txt", "w")
+            file = open(re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(p['edition']) + '_' + str(p['sequence'])) + ".txt", "w")
             file.write(p['ocr_eng'])
-            metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
+            metawriter.writerow([file, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
     metadata.close()
     pg+=1
-
 
 #creates a readme with some very simple information about the corpus
 with open('readme.txt', 'w') as readme:
