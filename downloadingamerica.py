@@ -22,7 +22,11 @@ while data['endIndex'] < data['totalItems']:
         for p in data['items']:
             file='notext'
             if 'ocr_eng' in p:
-                filename = re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(p['edition']) + '_' + str(p['sequence'])) + '.txt'
+                if p['edition'] is None:
+                    ed=1
+                else:
+                    ed=p['edition']
+                filename = re.sub('[^a-zA-Z0-9_]', '', str(p['date'])+'_'+p['title']+'_'+ str(ed) + '_'+ str(p['sequence'])) + '.txt'
                 file = open(filename, "w")
                 file.write(p['ocr_eng'])
         metawriter.writerow([filename, p['title'], p['date'], p['edition'], p['sequence'], p['city'][0], p['county'][0], p['state'][0], 'https://chroniclingamerica.loc.gov' + p['id']])
