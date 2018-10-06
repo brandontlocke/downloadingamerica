@@ -31,13 +31,17 @@ It will ask for a URL. Paste in the search results URL from any Chronicling Amer
 I'm going to add more information about how to read and process the JSON to customize your filenames and metadata. For now, just play around or file an issue!
 
 ## Limitations & Notes
+This is very much in beta and has only been tested with a few different search scenarios.
+
+**Due to some gaps and inconsistencies in metadata, it's possible that some text files will be overwritten—compare your csv rows with the number of files you have to see if you need to change the file-naming convention**
+
 This is set up to print OCR in English. If you're looking for a different language, replace `ocr_eng` with the language of your choice. If any pages in your results do not have `ocr_eng`, they will be added to `metadata.csv` with "notext" as the filename. It will not create a text file for the page.
 
 Sometimes there is an issue with encoding the ocr_eng text (this seems to be more of an issue on Windows than Mac OS X).
 
 The metadata for city, county, and state only print the first value in the record—this could be a problem if there are multiple city/county/states for the page, or if the first value isn't the information you're looking for. In testing, I only came across papers with single values, but that is probably not universal.
 
-This is very much in beta and has only been tested with a few different search scenarios. So far, it has been able to handle 31k pages in a query without problems.
+With large searches, you may encounter HTTP 503 errors from the LC server. It has been able to handle over 30k pages in a query without problems, but if your search exceeds that, you may want to split it into two or more batches.
 
 Some newspapers are missing key metadata which may result in blank metadata or filenaming issues.
 
